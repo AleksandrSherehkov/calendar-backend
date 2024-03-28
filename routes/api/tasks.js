@@ -29,4 +29,6 @@ router.patch(
 
 router.delete('/:id', ctrl.deleteById);
 
+router.get('/up/ping', ctrl.getPing);
+
 module.exports = router;

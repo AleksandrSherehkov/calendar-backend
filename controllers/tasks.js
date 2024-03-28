@@ -74,6 +74,10 @@ const deleteById = async (req, res) => {
   res.json({ message: 'Delete success' });
 };
 
+const getPing = async (_, res) => {
+  res.status(200).json({ message: 'Server is alive' });
+};
+
 module.exports = {
   getAll: ctrlWrapper(getAll),
   getById: ctrlWrapper(getById),
@@ -81,4 +85,5 @@ module.exports = {
   updateById: ctrlWrapper(updateById),
   updateCompleted: ctrlWrapper(updateCompleted),
   deleteById: ctrlWrapper(deleteById),
+  getPing: ctrlWrapper(getPing),
 };
