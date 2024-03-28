@@ -20,7 +20,7 @@ const getAll = async (req, res) => {
     console.log(`month:`, month);
     const startDate = new Date(Date.UTC(year, month - 1, 1));
     console.log(`startDate:`, startDate);
-    const endDate = new Date(Date.UTC(year, month, 0, 23, 59, 59));
+    const endDate = new Date(Date.UTC(year, month, 0, 23, 59, 59, 999));
     console.log(`endDate:`, endDate);
 
     filter.date = {
