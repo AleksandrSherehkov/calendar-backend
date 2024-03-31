@@ -19,6 +19,7 @@ const taskAddSchema = Joi.object({
 
 const queryParamSchema = Joi.object({
   filterQuery: Joi.string().allow('').optional(),
+  day: Joi.number().integer().min(1).max(31).optional(),
   month: Joi.number().integer().min(1).max(12).optional(),
   year: Joi.number().integer().min(2001).optional(),
 });

@@ -5,7 +5,7 @@ const { HttpError } = require('../helpers');
 const { ctrlWrapper } = require('../decorators');
 
 const getAll = async (req, res) => {
-  const { filterQuery, month, year } = req.query;
+  const { filterQuery, day, month, year } = req.query;
 
   const filter = {};
   if (filterQuery) {
@@ -15,13 +15,17 @@ const getAll = async (req, res) => {
     ];
   }
 
-  if (month && year) {
-    console.log(`year:`, year);
-    console.log(`month:`, month);
+  if (day && month && year) {
+    const startDate = new Date(Date.UTC(year, month - 1, day));
+    const endDate = new Date(Date.UTC(year, month - 1, day, 23, 59, 59));
+
+    filter.date = {
+      $gte: startDate,
+      $lte: endDate,
+    };
+  } else if (month && year) {
     const startDate = new Date(Date.UTC(year, month - 1, 1));
-    console.log(`startDate:`, startDate);
-    const endDate = new Date(Date.UTC(year, month, 0, 23, 59, 50));
-    console.log(`endDate:`, endDate);
+    const endDate = new Date(Date.UTC(year, month, 0, 23, 59, 59));
 
     filter.date = {
       $gte: startDate,
